@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -30,7 +29,6 @@ public class RainDropsSpawner : MonoBehaviour
     private void ActionOnRelease(RainDropObject rainDropObject)
     {
         rainDropObject.gameObject.SetActive(false);
-
     }
 
     private void ActionOnGet(RainDropObject rainDropObject)
