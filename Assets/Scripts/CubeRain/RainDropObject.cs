@@ -7,17 +7,12 @@ public class RainDropObject : MonoBehaviour
 {
     [SerializeField] private ObjectColorChanger _objectColorChanger;
 
-    public event Action<RainDropObject> RainDropTouchedPlatform;
-
     private Color _defaultColor;
+
+    public event Action<RainDropObject> RainDropTouchedPlatform;
 
     public MeshRenderer Renderer {get; private set; }
     public bool IsObjectTouchedPlatform {get; private set; }
-
-    public MeshRenderer GetMeshRenderer()
-    {
-        return Renderer;
-    }
 
     private void Awake()
     {

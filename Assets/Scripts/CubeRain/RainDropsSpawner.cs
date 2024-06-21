@@ -11,46 +11,70 @@ public class RainDropsSpawner : MonoBehaviour
     private ObjectPool<RainDropObject> _pool;
     private float _widthSpawnArea;
     private float _lengthSpawnArea;
+    private WaitForSeconds _waitForSeconds;
 
     private void Awake()
     {
         int numbersOfSide = 2;
         _widthSpawnArea = transform.localScale.x / numbersOfSide;
         _lengthSpawnArea = transform.localScale.z / numbersOfSide;
+
         _pool = new ObjectPool<RainDropObject>(
-        createFunc: () => Instantiate(_rainDropObject),
-        actionOnGet: (rainDropObject) => ActionOnGet(rainDropObject),
-        actionOnRelease: (rainDropObject) => ActionOnRelease(rainDropObject),
-        actionOnDestroy: (rainDropObject) => Destroy(rainDropObject),
-        collectionCheck: true,
-        defaultCapacity: _poolCapacity,
-        maxSize: _poolMaxSize);
+            createFunc: () => Instantiate(_rainDropObject),
+            actionOnGet: (rainDropObject) => ExecuteActionOnGet(rainDropObject),
+            actionOnRelease: (rainDropObject) => ExecuteActionOnRelease(rainDropObject),
+            actionOnDestroy: (rainDropObject) => Destroy(rainDropObject),
+            collectionCheck: true,
+            defaultCapacity: _poolCapacity,
+            maxSize: _poolMaxSize);
     }
 
     private void Start()
     {
-        float spawnDelayValue = 1;
-        InvokeRepeating(nameof(GetObject), 0.0f, spawnDelayValue);
+        StartCoroutine(SpawnRainDrops());
     }
 
-    private void ActionOnRelease(RainDropObject rainDropObject)
+    private void ExecuteActionOnRelease(RainDropObject rainDropObject)
     {
         rainDropObject.gameObject.SetActive(false);
         rainDropObject.RainDropTouchedPlatform -= OnRainDropTouchedPlatform;
     }
 
-    private void ActionOnGet(RainDropObject rainDropObject)
+    private void ExecuteActionOnGet(RainDropObject rainDropObject)
+    {
+        SetPositionAndRotation(rainDropObject);
+        SetDefaultVelocity(rainDropObject);
+        rainDropObject.gameObject.SetActive(true);
+        rainDropObject.RainDropTouchedPlatform += OnRainDropTouchedPlatform;
+    }
+
+    private void SetDefaultVelocity(RainDropObject rainDropObject)
+    {
+        rainDropObject.TryGetComponent(out Rigidbody rigidbody);
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+    }
+
+    private void SetPositionAndRotation(RainDropObject rainDropObject)
+    {
+        Vector3 spawnPosition = GetSpawnPosition();
+        Quaternion rotationPosition = GetRotationPosition();
+        rainDropObject.transform.SetPositionAndRotation(spawnPosition, rotationPosition);
+    }
+
+    private Vector3 GetSpawnPosition()
     {
         float xSpawnPosition = Random.Range(transform.position.x - _widthSpawnArea, transform.position.x + _widthSpawnArea);
         float ySpawnPosition = transform.position.y;
         float zSpawnPosition = Random.Range(transform.position.z - _lengthSpawnArea, transform.position.z + _lengthSpawnArea);
         Vector3 spawnPosition = new(xSpawnPosition, ySpawnPosition, zSpawnPosition);
+        return spawnPosition;
+    }
+
+    private Quaternion GetRotationPosition()
+    {
         Quaternion rotationPosition = Quaternion.Euler(0, 0, 0);
-        rainDropObject.transform.SetPositionAndRotation(spawnPosition, rotationPosition);
-        rainDropObject.TryGetComponent(out Rigidbody rigidbody);
-        rigidbody.velocity = Vector3.zero;
-        rainDropObject.gameObject.SetActive(true);
-        rainDropObject.RainDropTouchedPlatform += OnRainDropTouchedPlatform;
+        return rotationPosition;
     }
 
     private void OnRainDropTouchedPlatform(RainDropObject rainDropObject)
@@ -58,9 +82,16 @@ public class RainDropsSpawner : MonoBehaviour
         StartCoroutine(LifeTimeCountDown(rainDropObject));
     }
 
-    private void GetObject()
+    private IEnumerator SpawnRainDrops()
     {
-        _pool.Get();
+        float spawnDelay = 1;
+        _waitForSeconds = new(spawnDelay);
+
+        while (true)
+        {
+            _pool.Get();
+            yield return _waitForSeconds;
+        }
     }
 
     private IEnumerator LifeTimeCountDown(RainDropObject rainDropObject)
@@ -69,12 +100,12 @@ public class RainDropsSpawner : MonoBehaviour
         float maximumLifeTime = 5;
         float lifeTimeLeft = Random.Range(minimumLifeTime, maximumLifeTime);
         float delayValue = 1;
-        WaitForSeconds waitForSeconds = new(delayValue);
-
+        _waitForSeconds = new(delayValue);
+        
         while (lifeTimeLeft > 0)
         {
             lifeTimeLeft--;
-            yield return waitForSeconds;
+            yield return _waitForSeconds;
         }
 
         rainDropObject.gameObject.SetActive(false);

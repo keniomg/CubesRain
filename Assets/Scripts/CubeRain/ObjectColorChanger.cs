@@ -6,11 +6,6 @@ public class ObjectColorChanger : MonoBehaviour
 
     private RainDropObject _rainDropObject;
 
-    public void Initialize(RainDropObject rainDropObject)
-    {
-        _rainDropObject = rainDropObject;
-    }
-
     private void OnEnable()
     {
         _rainDropObject.RainDropTouchedPlatform += ChangeObjectColor;
@@ -21,12 +16,17 @@ public class ObjectColorChanger : MonoBehaviour
         _rainDropObject.RainDropTouchedPlatform -= ChangeObjectColor;
     }
 
+    public void Initialize(RainDropObject rainDropObject)
+    {
+        _rainDropObject = rainDropObject;
+    }
+
     private void ChangeObjectColor(RainDropObject rainDropObject)
     {
         int minimumColorIndex = 0;
         int maximumColorIndex = _colors.Length;
         int randomColorIndex = Random.Range(minimumColorIndex, maximumColorIndex);
-        MeshRenderer rainDropObjectRenderer = _rainDropObject.GetMeshRenderer();
+        MeshRenderer rainDropObjectRenderer = _rainDropObject.Renderer;
         rainDropObjectRenderer.material.color = _colors[randomColorIndex];
     }
 }
