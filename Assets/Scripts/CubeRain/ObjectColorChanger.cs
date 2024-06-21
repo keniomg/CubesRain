@@ -21,11 +21,11 @@ public class ObjectColorChanger : MonoBehaviour
         _rainDropObject.RainDropTouchedPlatform -= ChangeObjectColor;
     }
 
-    private void ChangeObjectColor()
+    private void ChangeObjectColor(RainDropObject rainDropObject)
     {
         int minimumColorIndex = 0;
         int maximumColorIndex = _colors.Length;
-        int randomColorIndex = UnityEngine.Random.Range(minimumColorIndex, maximumColorIndex);
+        int randomColorIndex = Random.Range(minimumColorIndex, maximumColorIndex);
         MeshRenderer rainDropObjectRenderer = _rainDropObject.GetMeshRenderer();
         rainDropObjectRenderer.material.color = _colors[randomColorIndex];
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
@@ -8,11 +7,12 @@ public class RainDropObject : MonoBehaviour
 {
     [SerializeField] private ObjectColorChanger _objectColorChanger;
 
-    public event Action RainDropTouchedPlatform;
+    public event Action<RainDropObject> RainDropTouchedPlatform;
 
-    private bool _isObjectTouchedPlatform;
+    private Color _defaultColor;
 
     public MeshRenderer Renderer {get; private set; }
+    public bool IsObjectTouchedPlatform {get; private set; }
 
     public MeshRenderer GetMeshRenderer()
     {
@@ -23,32 +23,26 @@ public class RainDropObject : MonoBehaviour
     {
         _objectColorChanger.Initialize(this);
         Renderer = GetComponent<MeshRenderer>();
-        _isObjectTouchedPlatform = false;
+        _defaultColor = Renderer.material.color;
+    }
+
+    private void OnEnable()
+    {
+        Renderer.material.color = _defaultColor;
+        IsObjectTouchedPlatform = false;
+    }
+
+    private void OnDisable()
+    {
+        IsObjectTouchedPlatform = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.TryGetComponent(out Platform platform) && _isObjectTouchedPlatform == false)
+        if (collision.collider.TryGetComponent(out Platform platform) && IsObjectTouchedPlatform == false)
         {
-            RainDropTouchedPlatform?.Invoke();
-            StartCoroutine(LifeTimeCountDown());
-            _isObjectTouchedPlatform = true;
+            RainDropTouchedPlatform?.Invoke(this);
+            IsObjectTouchedPlatform = true;
         }
-    }
-
-    private IEnumerator LifeTimeCountDown()
-    {
-        float minimumLifeTime = 2;
-        float maximumLifeTime = 5;
-        float lifeTimeLeft = UnityEngine.Random.Range(minimumLifeTime, maximumLifeTime);
-        float delayValue = 1;
-
-        while (lifeTimeLeft > 0)
-        {
-            lifeTimeLeft--;
-            yield return new WaitForSeconds(delayValue);
-        }
-
-        Destroy(gameObject);
     }
 }

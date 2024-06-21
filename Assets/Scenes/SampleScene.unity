@@ -209,13 +209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17182305, y: -0, z: -0, w: 0.98512787}
+  m_LocalRotation: {x: 0.07779394, y: -0, z: -0, w: 0.99696946}
   m_LocalPosition: {x: 4.67, y: 4.4, z: -4.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 19.788, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.924, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rainDropObject: {fileID: 4101573315455942665, guid: 86ed582f56586f44d8a48309ee90c1dd,
     type: 3}
+  _poolCapacity: 3
+  _poolMaxSize: 3
 --- !u!65 &787777188
 BoxCollider:
   m_ObjectHideFlags: 0
