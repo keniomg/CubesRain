@@ -444,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rainDropObject: {fileID: 4101573315455942665, guid: 86ed582f56586f44d8a48309ee90c1dd,
     type: 3}
-  _poolCapacity: 3
-  _poolMaxSize: 3
+  _poolCapacity: 7
+  _poolMaxSize: 10
 --- !u!65 &787777188
 BoxCollider:
   m_ObjectHideFlags: 0
