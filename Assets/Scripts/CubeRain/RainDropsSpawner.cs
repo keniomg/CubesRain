@@ -30,7 +30,7 @@ public class RainDropsSpawner : MonoBehaviour
     private void Start()
     {
         float spawnDelayValue = 1;
-        InvokeRepeating(nameof(_pool.Get), 0.0f, spawnDelayValue);
+        InvokeRepeating(nameof(GetObject), 0.0f, spawnDelayValue);
     }
 
     private void ActionOnRelease(RainDropObject rainDropObject)
@@ -56,6 +56,11 @@ public class RainDropsSpawner : MonoBehaviour
     private void OnRainDropTouchedPlatform(RainDropObject rainDropObject)
     {
         StartCoroutine(LifeTimeCountDown(rainDropObject));
+    }
+
+    private void GetObject()
+    {
+        _pool.Get();
     }
 
     private IEnumerator LifeTimeCountDown(RainDropObject rainDropObject)
