@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6726a479cb60c468dbce9be1c2d452, type: 3}
+  m_Name: RaindropsSpawnerData
+  m_EditorClassIdentifier: 
+  <SpawnerWidth>k__BackingField: 10
+  <SpawnerLength>k__BackingField: 10
+  <SpawnDelay>k__BackingField: 2
+  <minimumLifetime>k__BackingField: 2
+  <maximumLifetime>k__BackingField: 5

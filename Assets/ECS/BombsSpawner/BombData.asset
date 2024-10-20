@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4a2755e4976b645b22402d37934cce, type: 3}
+  m_Name: BombData
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField: {fileID: 2361772990308925347, guid: fce71601bee9a0e4fb1ec7d1a964306f,
+    type: 3}
+  <ExplosionRadius>k__BackingField: 10
+  <ExplosionForce>k__BackingField: 50
+  <MeshRenderer>k__BackingField: {fileID: 1168740811467076884, guid: fce71601bee9a0e4fb1ec7d1a964306f,
+    type: 3}
+  <ParticleSystem>k__BackingField: {fileID: 1998830269065593975, guid: 40f68862d3f6b5c44a6bebb642dc16c8,
+    type: 3}

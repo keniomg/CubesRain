@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e593ec475845494583b548d23fce852, type: 3}
+  m_Name: RaindropData
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField: {fileID: 1088167174114083097, guid: 36e523ca0bde5fc488e81d5f6e46147a,
+    type: 3}
+  <MeshRenderer>k__BackingField: {fileID: 8288994998994763877, guid: 36e523ca0bde5fc488e81d5f6e46147a,
+    type: 3}
+  <Transform>k__BackingField: {fileID: 4142497754763462234, guid: 36e523ca0bde5fc488e81d5f6e46147a,
+    type: 3}

@@ -1,7 +1,5 @@
 using UnityEngine;
 
-[RequireComponent (typeof(Collider))]
+[RequireComponent(typeof(Collider))]
 
-public class Platform : MonoBehaviour
-{
-}
+public class Platform : MonoBehaviour { }
