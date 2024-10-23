@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7585917394275818794}
   - component: {fileID: 3248225250882465736}
   - component: {fileID: 4101573315455942665}
-  - component: {fileID: 791844542520684306}
+  - component: {fileID: 457087367970507690}
   m_Layer: 0
   m_Name: RainDrop
   m_TagString: Untagged
@@ -147,8 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0155bee39ecb2174588269060c7a4de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectColorChanger: {fileID: 791844542520684306}
---- !u!114 &791844542520684306
+  _objectColorChanger: {fileID: 457087367970507690}
+  _eventer: {fileID: 11400000, guid: 53225602642d4af4e96202b6975dae86, type: 2}
+--- !u!114 &457087367970507690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,6 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colors:
   - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 1, g: 1, b: 1, a: 0}
   - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0.048704147, g: 1, b: 0, a: 0}
+  - {r: 1, g: 0.74682754, b: 0, a: 0}
+  - {r: 0, g: 1, b: 0.083200455, a: 0}

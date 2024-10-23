@@ -1,0 +1,1 @@
+﻿public class RaindropsCounter : ObjectsCounter<ObjectsSpawner<Raindrop>, Raindrop> { }

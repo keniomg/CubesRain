@@ -1,69 +1,68 @@
-//using UnityEngine;
-//using UnityEngine.Pool;
-//using System.Collections;
+using UnityEngine;
+using System.Collections;
 
-//public class RainDropsSpawner : ObjectSpawner<Bomb>
-//{
-//    [SerializeField] private int _poolCapacity;
-//    [SerializeField] private int _poolMaxSize;
-//    [SerializeField] private BombSpawner _bombSpawner;
+public class RaindropsSpawner : ObjectsSpawner<Raindrop>
+{
+    [SerializeField] private BombsSpawner _bombSpawner;
 
-//    private ObjectPool<Bomb> _pool;
-//    private float _widthSpawnArea;
-//    private float _lengthSpawnArea;
-//    private WaitForSeconds _waitForSeconds;
+    private float _widthSpawnArea;
+    private float _lengthSpawnArea;
 
-//    protected override void Awake()
-//    {
-//        int numbersOfSide = 2;
-//        _widthSpawnArea = transform.localScale.x / numbersOfSide;
-//        _lengthSpawnArea = transform.localScale.z / numbersOfSide;
+    protected override void Awake()
+    {
+        int numbersOfSide = 2;
+        _widthSpawnArea = transform.localScale.x / numbersOfSide;
+        _lengthSpawnArea = transform.localScale.z / numbersOfSide;
 
-//        base.Awake();
-//    }
+        base.Awake();
+    }
 
-//    private void Start()
-//    {
-//        StartCoroutine(SpawnRainDrops());
-//    }
+    private void Start()
+    {
+        StartCoroutine(SpawnRaindrops());
+    }
 
-//    protected override void AccompanyGet(Bomb rainDropObject)
-//    {
-//        base.AccompanyGet(rainDropObject);
-//        Eventer.RegisterTouchedPlatformEvent(rainDropObject.name, OnRainDropTouchedPlatform);
-//    }
+    protected override void AccompanyGet(Raindrop raindropObject)
+    {
+        base.AccompanyGet(raindropObject);
+        raindropObject.RaindropTouchedPlatform += OnRaindropTouchedPlatform;
+    }
 
-//    protected override void AccompanyRelease(Bomb rainDropObject)
-//    {
-//        base.AccompanyRelease(rainDropObject);
-//        Eventer.UnregisterTouchedPlatformEvent(rainDropObject.name, OnRainDropTouchedPlatform);
-//    }
+    protected override void AccompanyRelease(Raindrop raindropObject)
+    {
+        base.AccompanyRelease(raindropObject);
+        _bombSpawner.OnRaindropDisabled(raindropObject);
+        raindropObject.RaindropTouchedPlatform -= OnRaindropTouchedPlatform;
+    }
 
-//    protected override Vector3 GetSpawnPosition()
-//    {
-//        float xSpawnPosition = Random.Range(transform.position.x - _widthSpawnArea, transform.position.x + _widthSpawnArea);
-//        float ySpawnPosition = transform.position.y;
-//        float zSpawnPosition = Random.Range(transform.position.z - _lengthSpawnArea, transform.position.z + _lengthSpawnArea);
-//        Vector3 spawnPosition = new(xSpawnPosition, ySpawnPosition, zSpawnPosition);
+    protected override Vector3 GetSpawnPosition()
+    {
+        float xSpawnPosition = Random.Range(transform.position.x - _widthSpawnArea, transform.position.x + _widthSpawnArea);
+        float ySpawnPosition = transform.position.y;
+        float zSpawnPosition = Random.Range(transform.position.z - _lengthSpawnArea, transform.position.z + _lengthSpawnArea);
+        Vector3 spawnPosition = new(xSpawnPosition, ySpawnPosition, zSpawnPosition);
 
-//        return spawnPosition;
-//    }
+        return spawnPosition;
+    }
 
-//    private void OnRainDropTouchedPlatform(Bomb rainDropObject)
-//    {
-//        StartCoroutine(LifeTimeCountDown(rainDropObject));
-//    }
+    private void OnRaindropTouchedPlatform(Raindrop raindropObject)
+    {
+        if (!raindropObject.IsObjectAlreadyTouchedPlatform)
+        {
+            StartCoroutine(LifetimeCountdown(raindropObject));
+        }
+    }
 
-//    private IEnumerator SpawnRainDrops()
-//    {
-//        float spawnDelay = 1;
-//        _waitForSeconds = new(spawnDelay);
+    private IEnumerator SpawnRaindrops()
+    {
+        float spawnDelay = 1;
+        WaitForSeconds = new(spawnDelay);
 
-//        while (true)
-//        {
-//            _pool.Get();
+        while (true)
+        {
+            Pool.Get();
 
-//            yield return _waitForSeconds;
-//        }
-//    }
-//}
+            yield return WaitForSeconds;
+        }
+    }
+}

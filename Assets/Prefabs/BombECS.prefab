@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 8678701598635379989}
   - component: {fileID: 1168740811467076884}
   - component: {fileID: 1907495157979840642}
+  - component: {fileID: 3990052377088775957}
   - component: {fileID: 6570979496895668595}
-  - component: {fileID: -7147427506957682663}
-  - component: {fileID: -386956721743615204}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: BombECS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +109,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3990052377088775957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361772990308925347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2506e8ccb19e115458de317926a90581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bombData: {fileID: 11400000, guid: f8e08c22932dcdc479ff6c228d890ef0, type: 2}
 --- !u!54 &6570979496895668595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,34 +149,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7147427506957682663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2361772990308925347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa3486359e13a9d478f5b86ab0b2601e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Explosion>k__BackingField: {fileID: 1998830269065593975, guid: 40f68862d3f6b5c44a6bebb642dc16c8,
-    type: 3}
-  _explosionRadius: 50
-  _explosionForce: 200
---- !u!114 &-386956721743615204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2361772990308925347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162c368bb2ae7b44992695b2b24b51a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7870578806646929805
 GameObject:
   m_ObjectHideFlags: 0
