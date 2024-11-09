@@ -15,5 +15,5 @@ MonoBehaviour:
   <SpawnerWidth>k__BackingField: 10
   <SpawnerLength>k__BackingField: 10
   <SpawnDelay>k__BackingField: 2
-  <minimumLifetime>k__BackingField: 2
-  <maximumLifetime>k__BackingField: 5
+  <MinimumLifetime>k__BackingField: 2
+  <MaximumLifetime>k__BackingField: 5

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef44135d0413e0f43b6c450a500be74c, type: 3}
   m_Name: New Bomb Spawner Data
   m_EditorClassIdentifier: 
-  <minimumLifetime>k__BackingField: 2
-  <maximumLifetime>k__BackingField: 5
+  <MinimumLifetime>k__BackingField: 2
+  <MaximumLifetime>k__BackingField: 5

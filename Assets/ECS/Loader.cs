@@ -31,7 +31,7 @@ public class Loader : MonoBehaviour
         _fixedUpdateSystems.Add(new SpawnedObjectsCounterInitSystem());
 
         _fixedUpdateSystems.Add(new RaindropsSpawnerSystem());
-        _fixedUpdateSystems.Add(new BombSpawnerSystem());
+        _fixedUpdateSystems.Add(new BombsSpawnerSystem());
         _fixedUpdateSystems.Add(new LifetimeSetterSystem());
         _fixedUpdateSystems.Add(new CountdownSystem());
         _fixedUpdateSystems.Add(new TransparencyCountdownSystem());
