@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ECS.Components
+﻿namespace ECS.Components
 {
     public struct MaterialAlphaComponent
     {
